@@ -3,10 +3,11 @@ export const View = ({feedbacks}) => {
     
     return feedbacks.map(feedback=>(
         
-        <tr key={feedback.isbn}>
-            <td>{feedback.isbn}</td>
-            <td>{feedback.title}</td>
-            <td>{feedback.author}</td>
+        <tr key={feedback.name}>
+            <td>{feedback.name}</td>
+            <td>{feedback.email}</td>
+            <td>{feedback.phone}</td>
+          
             <td>{feedback.radiobutton}</td>
                       
         </tr>            
