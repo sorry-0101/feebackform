@@ -9,30 +9,56 @@ const getDatafromLS = () => {
     return [];
   }
 };
-
+// let feedback = {
+//   name: "",
+//   email: "",
+//   text: "",
+//   phone: "",
+//   radiobutton: "",
+// };
 export const App = () => {
   const [feedbacks, setFeedbacks] = useState(getDatafromLS());
   const [name, setName] = useState("");
+  const [text, setText] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [radiobutton, setradiobutton] = useState("");
 
+  // testing chal rhi ha yaha pr
+  // const [test, setTest] = useState({
+  //   feedback,
+  // });
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setTest({
+  //     ...test,
+  //     [name]: value,
+  //   });
+  // };
+
+  // testing chal rhi ha yaha pr
+
   const feedbackformhandler = (e) => {
     e.preventDefault();
-
     let feedback = {
       name,
       email,
+      text,
       phone,
       radiobutton,
     };
 
     setFeedbacks([...feedbacks, feedback]);
     setName("");
+    setText("");
     setEmail("");
     setPhone("");
     setradiobutton("");
+
+    alert("“Thank you for completing the information");
   };
+  console.log(feedbacks);
 
   useEffect(() => {
     localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
@@ -42,6 +68,11 @@ export const App = () => {
     <div className="wrapper">
       <div className="container">
         <h1>Aromatic Bar</h1>
+        <p>
+          <strong>Description:</strong> We are committed to providing you with
+          the best dining experience possible, so we welcome your comments.
+          Please fill out this questionnaire. Thank you.
+        </p>
         <hr />
 
         <ul className="nav nav-tabs">
@@ -65,35 +96,51 @@ export const App = () => {
                 className="form-group"
                 onSubmit={feedbackformhandler}
               >
-                <label>Customer Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  required
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                ></input>
-                <br></br>
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                ></input>
-                <br></br>
-                <label>Phone</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  required
-                  onChange={(e) => setPhone(e.target.value)}
-                  value={phone}
-                ></input>
-                <br></br>
-                <div className="mb-4">
-                  <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-6 col-xs-12 ">
+                    <label>Text Field</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required
+                      value={text}
+                      onChange={(e) => setText(e.target.value)}
+                    
+                    ></input>
+                  </div>
+                  <div className="col-md-6 col-xs-12 ">
+                    <label>Customer Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                    ></input>
+                  </div>
+                  <div className="col-md-6 col-xs-12 ">
+                    <label>Email</label>
+                    <input
+                      type="email"
+                      className="form-control  "
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                    ></input>
+                  </div>
+
+                  <div className="col-md-6 col-xs-12">
+                    {" "}
+                    <label>Phone</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      required
+                      onChange={(e) => setPhone(e.target.value)}
+                      value={phone}
+                    ></input>
+                  </div>
+                  <div className="col-md-6 col-xs-12">
                     <label htmlFor="radiobutton" className="form-label">
                       User Experience ?
                     </label>
@@ -148,14 +195,15 @@ export const App = () => {
                       </label>
                     </div>
                   </div>
-                </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-success text-right btn-md  "
-                >
-                  Give Feedback
-                </button>
+                  <div className="col-md-12  mt-4 mb-4 ">
+                    <div className="text-right">
+                      <button type="submit" className="btn btn-success  btn-md">
+                        Give Feedback
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -167,6 +215,7 @@ export const App = () => {
                     <table className="table">
                       <thead>
                         <tr>
+                          <th>Text Field</th>
                           <th>Customer Name</th>
                           <th>Email</th>
                           <th>Phone</th>
